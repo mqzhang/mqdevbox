@@ -6,6 +6,8 @@ My develop environment based on [devbox](https://www.jetify.com/devbox). Inspire
 ### 1. Install Nix
 Install Nix using [Determinate Nix Installer](https://determinate.systems/nix/) is better than the official script because it provides better uninstall experience and enable flakes by default. Document: https://zero-to-nix.com/start/install/ .
 
+MacOS can download a pkg installer here: https://docs.determinate.systems/ .
+
 ```
 # install nix using Determinate Nix Installer:
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
