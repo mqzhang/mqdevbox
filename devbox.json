@@ -5,7 +5,16 @@
     "python@3.13",
     "nodejs@23",
     "tree@latest",
-    "git@latest"
+    "git@latest",
+    "btop@latest",
+    "neovim@latest",
+    "fastfetch@latest",
+    "ripgrep@latest",
+    "fzf@latest",
+    "unzip@latest",
+    "fd@latest",
+    "eza@latest",
+    "whois@latest"
   ],
   "shell": {
     "init_hook": [
