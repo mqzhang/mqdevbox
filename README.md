@@ -24,8 +24,7 @@ curl -fsSL https://get.jetify.com/devbox | bash
 ```
 
 ### 3. Run devbox shell
-Using sjtu cache:
 
 ```
-NIX_CONFIG="extra-substituters = https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store" DEVBOX_DEBUG=1 devbox shell
+DEVBOX_DEBUG=1 devbox shell
 ```
