@@ -17,6 +17,9 @@ node_modules
 .yalc
 dist
 
+package.json
+package-lock.json
+
 
 # Python
 *.pyc
