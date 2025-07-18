@@ -22,7 +22,6 @@
     "lazygit@latest",
     "go@latest"
   ],
-  "env_from": "devbox.env",
   "env": {
     "FOO": "bar"
   },
