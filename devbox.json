@@ -16,10 +16,15 @@
     "eza@latest",
     "whois@latest"
   ],
+  "env_from": "devbox.env",
+  "env": {
+    "FOO": "bar"
+  },
   "shell": {
     "init_hook": [
       "echo 'Welcome to devbox!' > /dev/null",
-      ". $VENV_DIR/bin/activate"
+      ". $VENV_DIR/bin/activate",
+      "source $DEVBOX_PROJECT_ROOT/aliases.sh"
     ],
     "scripts": {
       "test": ["echo \"Error: no test specified\" && exit 1"]
