@@ -19,8 +19,7 @@
     "curl@latest",
     "inetutils@latest",
     "tldr@latest",
-    "lazygit@latest",
-    "yarn@latest"
+    "lazygit@latest"
   ],
   "env_from": "devbox.env",
   "env": {
