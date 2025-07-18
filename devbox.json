@@ -25,6 +25,8 @@
   "env_from": "devbox.env",
   "env": {
     "GOPATH": "$HOME/go/",
+    "GO111MODULE": "on",
+    "GOPROXY": "https://goproxy.cn,direct",
     "PATH": "$PATH:$HOME/go/bin"
   },
   "shell": {
