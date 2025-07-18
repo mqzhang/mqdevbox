@@ -19,16 +19,19 @@
     "curl@latest",
     "inetutils@latest",
     "tldr@latest",
-    "lazygit@latest"
+    "lazygit@latest",
+    "go@latest"
   ],
   "env_from": "devbox.env",
   "env": {
-    "FOO": "bar"
+    "GOPATH": "$HOME/go/",
+    "PATH": "$PATH:$HOME/go/bin"
   },
   "shell": {
     "init_hook": [
       "echo 'Welcome to devbox!' > /dev/null",
       ". $VENV_DIR/bin/activate",
+      "export \"GOROOT=$(go env GOROOT)\"",
       "source $DEVBOX_PROJECT_ROOT/aliases.sh"
     ],
     "scripts": {
