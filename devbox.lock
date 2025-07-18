@@ -565,6 +565,54 @@
         }
       }
     },
+    "lazygit@latest": {
+      "last_modified": "2025-07-13T22:45:35Z",
+      "resolved": "github:NixOS/nixpkgs/a421ac6595024edcfbb1ef950a3712b89161c359#lazygit",
+      "source": "devbox-search",
+      "version": "0.53.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lrzxw35vd2w3x389a8w053fgcspkcpln-lazygit-0.53.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/lrzxw35vd2w3x389a8w053fgcspkcpln-lazygit-0.53.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8bk8af0jkpk3hjjx6d0ncfxv87mi64b2-lazygit-0.53.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/8bk8af0jkpk3hjjx6d0ncfxv87mi64b2-lazygit-0.53.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/wv8fylnw6mzcin0pswzay144yzkaiimb-lazygit-0.53.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/wv8fylnw6mzcin0pswzay144yzkaiimb-lazygit-0.53.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/vrsrfm058q6c985hlz948rzw37b6q6v1-lazygit-0.53.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/vrsrfm058q6c985hlz948rzw37b6q6v1-lazygit-0.53.0"
+        }
+      }
+    },
     "neovim@latest": {
       "last_modified": "2025-07-15T16:15:05Z",
       "resolved": "github:NixOS/nixpkgs/dab3a6e781554f965bde3def0aa2fda4eb8f1708#neovim",

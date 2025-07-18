@@ -18,7 +18,8 @@
     "wget@latest",
     "curl@latest",
     "inetutils@latest",
-    "tldr@latest"
+    "tldr@latest",
+    "lazygit@latest"
   ],
   "env_from": "devbox.env",
   "env": {
