@@ -5,4 +5,8 @@ gem install bundler
 bundle config mirror.https://rubygems.org https://gems.ruby-china.com
 
 npm config set registry https://registry.npmmirror.com
-# yarn config set registry https://registry.npmmirror.com
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+
+npm install -g yarn
+yarn config set registry https://registry.npmmirror.com

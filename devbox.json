@@ -24,14 +24,12 @@
   ],
   "env_from": "devbox.env",
   "env": {
-    "GOPATH": "$HOME/go/",
-    "GO111MODULE": "on",
-    "GOPROXY": "https://goproxy.cn,direct",
-    "PATH": "$PATH:$HOME/go/bin"
+    "FOO": "bar"
   },
   "shell": {
     "init_hook": [
       "echo 'Welcome to devbox!' > /dev/null",
+      "source $DEVBOX_PROJECT_ROOT/devbox.env",
       ". $VENV_DIR/bin/activate",
       "export \"GOROOT=$(go env GOROOT)\"",
       "source $DEVBOX_PROJECT_ROOT/aliases.sh"
