@@ -14,7 +14,11 @@
     "unzip@latest",
     "fd@latest",
     "eza@latest",
-    "whois@latest"
+    "whois@latest",
+    "wget@latest",
+    "curl@latest",
+    "inetutils@latest",
+    "tldr@latest"
   ],
   "env_from": "devbox.env",
   "env": {
