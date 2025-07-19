@@ -20,7 +20,8 @@
     "inetutils@latest",
     "tldr@latest",
     "lazygit@latest",
-    "go@latest"
+    "go@latest",
+    "helix@latest"
   ],
   "env": {
     "FOO": "bar"
