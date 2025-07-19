@@ -21,7 +21,8 @@
     "tldr@latest",
     "lazygit@latest",
     "go@latest",
-    "helix@latest"
+    "helix@latest",
+    "emacs@latest"
   ],
   "env": {
     "FOO": "bar"

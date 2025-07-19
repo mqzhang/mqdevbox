@@ -173,6 +173,54 @@
         }
       }
     },
+    "emacs@latest": {
+      "last_modified": "2025-07-13T22:45:35Z",
+      "resolved": "github:NixOS/nixpkgs/a421ac6595024edcfbb1ef950a3712b89161c359#emacs",
+      "source": "devbox-search",
+      "version": "30.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/s3qggqxjxp44xyid56485b47iix8k8zq-emacs-30.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/s3qggqxjxp44xyid56485b47iix8k8zq-emacs-30.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/9f949ic8y9g20q1lsindbdqp0wz4d0b5-emacs-30.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/9f949ic8y9g20q1lsindbdqp0wz4d0b5-emacs-30.1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/yh79391cs1pm6q2wnxgdzk67kka6qwkr-emacs-30.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/yh79391cs1pm6q2wnxgdzk67kka6qwkr-emacs-30.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/k43vpc65arhlly1sd6r2rzc5q4mhk7ik-emacs-30.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/k43vpc65arhlly1sd6r2rzc5q4mhk7ik-emacs-30.1"
+        }
+      }
+    },
     "eza@latest": {
       "last_modified": "2025-07-13T22:45:35Z",
       "resolved": "github:NixOS/nixpkgs/a421ac6595024edcfbb1ef950a3712b89161c359#eza",
