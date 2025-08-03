@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打地鼠游戏</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .game-header {
+            margin-bottom: 20px;
+        }
+
+        .game-header h1 {
+            color: #333;
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .score {
+            color: #e74c3c;
+        }
+
+        .timer {
+            color: #3498db;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hole {
+            width: 100px;
+            height: 100px;
+            background: #8B4513;
+            border-radius: 50%;
+            position: relative;
+            border: 5px solid #654321;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .mole {
+            width: 80px;
+            height: 80px;
+            background: #8B4513;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 150%);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mole::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #000;
+            border-radius: 50%;
+            top: 25%;
+            left: 25%;
+        }
+
+        .mole::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #000;
+            border-radius: 50%;
+            top: 25%;
+            right: 25%;
+        }
+
+        .mole.active {
+            transform: translate(-50%, -50%);
+        }
+
+        .mole.hit {
+            background: #e74c3c;
+            transform: translate(-50%, 150%);
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+
+        .btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .game-over {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+
+        .game-over h2 {
+            color: #e74c3c;
+            margin-top: 0;
+        }
+
+        .difficulty {
+            margin-bottom: 20px;
+        }
+
+        .difficulty select {
+            padding: 8px 16px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>🔨 打地鼠游戏</h1>
+        </div>
+        
+        <div class="difficulty">
+            <label for="difficulty">难度选择：</label>
+            <select id="difficulty">
+                <option value="easy">简单</option>
+                <option value="medium" selected>中等</option>
+                <option value="hard">困难</option>
+            </select>
+        </div>
+
+        <div class="game-info">
+            <div class="score">得分: <span id="score">0</span></div>
+            <div class="timer">时间: <span id="timer">30</span>秒</div>
+        </div>
+
+        <div class="game-board" id="gameBoard">
+            <div class="hole" data-hole="0">
+                <div class="mole"></div>
+            </div>
+            <div class="hole" data-hole="1">
+                <div class="mole"></div>
+            </div>
+            <div class="hole" data-hole="2">
+                <div class="mole"></div>
+            </div>
+            <div class="hole" data-hole="3">
+                <div class="mole"></div>
+            </div>
+            <div class="hole" data-hole="4">
+                <div class="mole"></div>
+            </div>
+            <div class="hole" data-hole="5">
+                <div class="mole"></div>
+            </div>
+            <div class="hole" data-hole="6">
+                <div class="mole"></div>
+            </div>
+            <div class="hole" data-hole="7">
+                <div class="mole"></div>
+            </div>
+            <div class="hole" data-hole="8">
+                <div class="mole"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" id="startBtn">开始游戏</button>
+            <button class="btn" id="restartBtn" disabled>重新开始</button>
+        </div>
+
+        <div class="game-over" id="gameOver">
+            <h2>游戏结束！</h2>
+            <p>最终得分: <span id="finalScore">0</span></p>
+            <button class="btn" id="playAgainBtn">再玩一次</button>
+        </div>
+    </div>
+
+    <script>
+        class WhackAMoleGame {
+            constructor() {
+                this.score = 0;
+                this.timeLeft = 30;
+                this.gameActive = false;
+                this.gameTimer = null;
+                this.moleTimer = null;
+                this.currentMole = null;
+                this.difficulty = 'medium';
+                
+                this.scoreElement = document.getElementById('score');
+                this.timerElement = document.getElementById('timer');
+                this.startBtn = document.getElementById('startBtn');
+                this.restartBtn = document.getElementById('restartBtn');
+                this.playAgainBtn = document.getElementById('playAgainBtn');
+                this.gameOverElement = document.getElementById('gameOver');
+                this.finalScoreElement = document.getElementById('finalScore');
+                this.difficultySelect = document.getElementById('difficulty');
+                this.moles = document.querySelectorAll('.mole');
+                
+                this.initEventListeners();
+            }
+
+            initEventListeners() {
+                this.startBtn.addEventListener('click', () => this.startGame());
+                this.restartBtn.addEventListener('click', () => this.restartGame());
+                this.playAgainBtn.addEventListener('click', () => this.restartGame());
+                this.difficultySelect.addEventListener('change', (e) => {
+                    this.difficulty = e.target.value;
+                });
+
+                this.moles.forEach(mole => {
+                    mole.addEventListener('click', (e) => this.whackMole(e));
+                });
+            }
+
+            startGame() {
+                this.gameActive = true;
+                this.score = 0;
+                this.timeLeft = 30;
+                this.updateDisplay();
+                
+                this.startBtn.disabled = true;
+                this.restartBtn.disabled = false;
+                this.difficultySelect.disabled = true;
+                this.gameOverElement.style.display = 'none';
+                
+                this.gameTimer = setInterval(() => {
+                    this.timeLeft--;
+                    this.updateDisplay();
+                    
+                    if (this.timeLeft <= 0) {
+                        this.endGame();
+                    }
+                }, 1000);
+                
+                this.spawnMole();
+            }
+
+            spawnMole() {
+                if (!this.gameActive) return;
+                
+                // 隐藏当前地鼠
+                if (this.currentMole) {
+                    this.currentMole.classList.remove('active');
+                }
+                
+                // 随机选择一个新的地鼠
+                const randomHole = Math.floor(Math.random() * this.moles.length);
+                this.currentMole = this.moles[randomHole];
+                this.currentMole.classList.add('active');
+                
+                // 根据难度设置地鼠显示时间
+                const difficultySettings = {
+                    easy: 1500,
+                    medium: 1000,
+                    hard: 700
+                };
+                
+                const moleTime = difficultySettings[this.difficulty];
+                
+                this.moleTimer = setTimeout(() => {
+                    if (this.currentMole) {
+                        this.currentMole.classList.remove('active');
+                    }
+                    this.spawnMole();
+                }, moleTime);
+            }
+
+            whackMole(e) {
+                if (!this.gameActive) return;
+                
+                const mole = e.target;
+                if (mole.classList.contains('active')) {
+                    this.score += 10;
+                    this.updateDisplay();
+                    
+                    // 添加击中效果
+                    mole.classList.add('hit');
+                    mole.classList.remove('active');
+                    
+                    setTimeout(() => {
+                        mole.classList.remove('hit');
+                    }, 300);
+                    
+                    // 立即生成新的地鼠
+                    clearTimeout(this.moleTimer);
+                    setTimeout(() => this.spawnMole(), 200);
+                }
+            }
+
+            endGame() {
+                this.gameActive = false;
+                clearInterval(this.gameTimer);
+                clearTimeout(this.moleTimer);
+                
+                // 隐藏所有地鼠
+                this.moles.forEach(mole => {
+                    mole.classList.remove('active', 'hit');
+                });
+                
+                this.finalScoreElement.textContent = this.score;
+                this.gameOverElement.style.display = 'block';
+                
+                this.startBtn.disabled = false;
+                this.restartBtn.disabled = true;
+                this.difficultySelect.disabled = false;
+            }
+
+            restartGame() {
+                this.gameActive = false;
+                clearInterval(this.gameTimer);
+                clearTimeout(this.moleTimer);
+                
+                this.score = 0;
+                this.timeLeft = 30;
+                this.updateDisplay();
+                
+                this.moles.forEach(mole => {
+                    mole.classList.remove('active', 'hit');
+                });
+                
+                this.gameOverElement.style.display = 'none';
+                this.startBtn.disabled = false;
+                this.restartBtn.disabled = true;
+                this.difficultySelect.disabled = false;
+            }
+
+            updateDisplay() {
+                this.scoreElement.textContent = this.score;
+                this.timerElement.textContent = this.timeLeft;
+            }
+        }
+
+        // 初始化游戏
+        const game = new WhackAMoleGame();
+    </script>
+</body>
+</html>
