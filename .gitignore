@@ -6,6 +6,7 @@
 
 # MacOS filesystem
 .DS_Store
+nohup.out
 
 # Editors
 .idea
